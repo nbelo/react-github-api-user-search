@@ -1,0 +1,132 @@
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 35vmin;
+  pointer-events: none;
+}
+
+.error {
+  color: red;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-mover 1s infinite alternate;
+    -webkit-animation: App-logo-mover 1s infinite alternate;
+  }
+}
+
+.App-header, .searchUsersBox, .searchUsersResult {
+  background-color: #282c34;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 1vmin);
+  color: white;
+}
+
+.App-header h1 {
+  margin: 0;
+}
+
+.searchUsersResult img {
+  width: 120px;
+}
+
+.searchUsersForm input, .searchUsersForm button {
+  padding: 8px;
+  border-radius: 6px;
+  font-size: calc(10px + 1vmin);
+}
+
+.searchUsersForm input:focus-visible {
+  outline-color: #40f589;
+  outline-style: solid;
+  outline-width: 3px;
+}
+
+.listOfRepositories {
+  margin-top: 10px;
+  background-color: #000;
+  padding: 10px 40px;
+  max-height: 250px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-radius: 8px;
+  max-width: 80vw;
+}
+
+.listOfRepositories p {
+  color: #40f589;
+  font-size: 14px;
+  margin: 1px;
+  text-align: center;
+  font-weight: 500;
+  transform: scale(1);
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -o-transition: all 1s;
+  transition: all 1s;
+}
+
+.listOfRepositories p a {
+  color: #40f589;
+}
+
+.listOfRepositories p:hover{ 
+  transform: scale(1.1);
+}
+
+.listOfRepositories span {
+  font-size: 11px;
+  font-style: italic;
+}
+
+.searchUsersForm button {
+  background-color: #61dafb;
+  font-size: calc(10px + 1vmin);
+  padding: 8px;
+  border-radius: 6px;
+}
+
+.blueBtn {
+  background-color: #61dafb;
+  font-size: calc(10px + 1vmin);
+  padding: 8px;
+  border-radius: 6px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.searchUserButton {
+  margin-top: 30px;
+  margin-bottom: 15vh;
+}
+
+.searchUsersResult {
+  min-height: 100vh;
+}
+
+.searchUsersResult li {
+  text-align: left;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@-webkit-keyframes App-logo-mover {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-10px); }
+}
+@keyframes App-logo-mover {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-10px); }
+}
+
