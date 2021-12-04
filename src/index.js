@@ -4,6 +4,11 @@ import App from './App';
 import './index.css';
 //import reportWebVitals from './reportWebVitals';
 
+window.var = {
+  userPage:1,
+  userName:""
+}
+
 ReactDOM.render(
   <React.StrictMode>
     <App />

@@ -3,55 +3,73 @@ import './App.css';
 import React, { useState, useEffect } from "react";
 
 const App = () => {
-  const userName = "";
+  const [user, setUser] = useState(true);
   const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState([true]);
   const [repositories, setUserRepositories] = useState([]);
 
-  const LoadUsers = () => {
-    let username = document.getElementById("username").value;
-    if (username.length == 0) {
-      setError("Please type a username");
-      return;
-    }
-    fetch("https://api.github.com/search/users?q=" + username,{
-      method: "GET",
+  const LoadUsers = () => {    
+    if (document.getElementById("username") != null) {
+      window.var.userName = document.getElementById("username").value
+      if (window.var.userName.length === 0) {
+        setError("Please type a username");
+        return;
+      }      
+    }    
+    fetch("https://api.github.com/search/users?q=" + window.var.userName + "&page=" + window.var.userPage, {
+      method: "GET", 
       headers: {
-        //Authorization: `token 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 ` 
+        Authorization: `token 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 ` 
       }
     })
     .then(res => res.json())
     .then(
       (result) => {
-        console.log("Result="+result);
-        setIsLoaded(true);
-        setUsers(result);
-        setError(null);
-      },
-      (error) => {
-        console.log("Error="+error);
-        setIsLoaded(true);
-        setError(error);
+        if (result["items"]) {
+          setUsers(result);       
+          setUser(result.items[0])
+        } else {
+          setError(result.message)
+        }
       }
     )
   }
 
   const ResetUsers = () => {
-    setUsers({});
+    window.var.userPage = 1
+    setUsers({})
+  }
+  
+  const NextUser = () => {
+    let idx = users.items.indexOf(user, 0)
+    document.getElementById("loadingRepos").style.display = "block";
+    document.getElementById("totalOfRepositories").style.opacity = 0;
+    if (idx === 29) {
+      document.var.userPage++
+      LoadUsers()
+      setUser(users.items[0])      
+    } else {
+      setUser(users.items[idx+1])
+    }
   }
 
   useEffect(() => {
-    async function fetchProduct(login) {
-      const response = await fetch("https://api.github.com/users/"+login+"/repos?per_page=100");
+    async function fetchRepos() {
+      const response = await fetch("https://api.github.com/users/"+user.login+"/repos?per_page=100",{
+        method: "GET",
+        headers: {
+          Authorization: `token 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 ` 
+        }
+      })
       const json = await response.json();
+      document.getElementById("loadingRepos").style.display = "none";
+      document.getElementById("totalOfRepositories").style.opacity = 1;
       setUserRepositories(json);
-      console.log("json loaded="+json.length);
     }
     if (users.total_count > 0) {
-      fetchProduct(users.items[0].login);
+      fetchRepos();
     }
-  },[users]);
+  },[user]);
 
   if (!users.total_count) {
     return (
@@ -62,7 +80,7 @@ const App = () => {
         </header>
         <div className="searchUsersBox">
           <div className="searchUsersForm">
-          <p className="error">{error}</p>
+            <p className="error">{error}</p>
             <label htmlFor="username">Enter username: </label>
             <input type="text" id="username" data-testid="username" placeholder="Type a username..."/>
             <div className="searchUserButton">
@@ -79,25 +97,28 @@ const App = () => {
     return (
       <div className="App">
         <div className="searchUsersResult">
-          <header>
-            <button className="blueBtn" onClick={ResetUsers}><span>&#x2039;</span> Back</button> 
+          <header> 
             <h1>The user page</h1>
             <h2>Found {users.total_count} users</h2>
-            {
-              <div>
-                <img src={users.items[0].avatar_url} alt={users.items[0].login} />
-                <p>{users.items[0].login}</p>
-                <span>Total of {repositories.length} repositories</span>
-                <div className="listOfRepositories">
-                  {
-                    repositories.map(repo => (
-                      <p><a href={repo.html_url} target="_blank">{repo.name}</a><span>{repo.description ? ": " + repo.description : "" }</span></p>
-                    ))
-                  }
-                </div>
+            <button className="blueBtn" onClick={ResetUsers}><span>&#x2039;</span> Back</button>
+            <button className="blueBtn" onClick={NextUser}>Next user <span>&#x203A;</span></button>
+            <h3>Showing user #{users.items.indexOf(user, 0) + 1 + ((window.var.userPage-1)*30)}</h3>
+          </header>
+          {
+            <div className="userInfoBox">
+              <img src={user.avatar_url} alt={user.login} />
+              <p>{user.login}</p>
+              <p className="totalOfRepositories" id="totalOfRepositories">Total of {repositories.length} repositories</p>
+              <p id="loadingRepos" className="loadingRepos">Loading repositories...</p>
+              <div id="listRepos" className="listRepos">                
+                {
+                  repositories.map(repo => (
+                    <p key={repo.name}><a href={repo.html_url} target="_blank">{repo.name}</a><span>{repo.description ? ": " + repo.description : "" }</span></p>
+                  ))
+                }
               </div>
-            }            
-          </header>          
+            </div>
+          }                    
         </div>
       </div>
     )
