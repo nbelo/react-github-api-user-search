@@ -98,8 +98,8 @@ const App = () => {
       <div className="App">
         <div className="searchUsersResult">
           <header> 
-            <h1>The user page</h1>
-            <h2>Found {users.total_count} users</h2>
+            <h1>The user pageq</h1>
+            <h2>Found {users.total_count} {users.total_count > 1 ? "users" : "user"}</h2>
             <button className="blueBtn" onClick={ResetUsers}><span>&#x2039;</span> Back</button>
             <button className="blueBtn" onClick={NextUser}>Next user <span>&#x203A;</span></button>
             <h3>Showing user #{users.items.indexOf(user, 0) + 1 + ((window.var.userPage-1)*30)}</h3>
