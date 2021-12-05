@@ -105,6 +105,13 @@
 
 .listRepos p a {
   color: #40f589;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.listRepos p u {
+  font-size: 14px;
 }
 
 .listRepos p:hover {
@@ -112,7 +119,7 @@
           transform: scale(1.12);
 }
 
-.listRepos span {
+.listRepos p span {
   font-size: 11px;
   font-style: italic;
 }

@@ -119,7 +119,9 @@ const App = () => {
               <div id="listRepos" className="listRepos">                
                 {
                   repositories.map(repo => (
-                    <p key={repo.name}><a href={repo.html_url} target="_blank"rel="noreferrer">{repo.name}</a>
+                    <p key={repo.name}>
+                      <a href={repo.html_url} target="_blank"rel="noreferrer"></a>
+                      <u>{repo.name}</u>
                       <span>{repo.description ? ": " + repo.description : "" }</span>
                     </p>
                   ))
