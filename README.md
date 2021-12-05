@@ -46,11 +46,12 @@ When the user data is displayed, at it's change, another api request is triggere
 📌  ![CSS3](https://img.shields.io/badge/-CSS3-549FDE?style=flat-square&logo=css3&logoColor=white)
 - Writing CSS is much more simple and organized if we use SASS, so I've decided to use this prepocessor to help in this task.
 
+
 --
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 
-### Tests
+## Tests
 Two automated Tests were developed, one for each page
 - [x] **Renders search page** : If the string "The search page" is found in the page the test passes.
 - [x] **Loads and displays user page for username "nuno"** : The username is set to "nuno" and a api search user request is triggered,and, after the string "The user page" is displayed, if the user login name "nuno" is found in the page, the test passes.

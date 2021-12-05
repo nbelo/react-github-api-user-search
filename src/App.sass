@@ -1,11 +1,15 @@
+// Variables
 $base-blue: #61dafb
-$light-blue:#c3f1fd
+$light-blue: #c3f1fd
 $dark-blue: #3eadcc
+$darker-blue: #329fbd
 $base-green: #40f589
-  
-  
+$base-blue-shadow: #61dafb59
+
+// App css
 .App 
   text-align: center
+  background-color: #282c34
 
 .App-logo
   height: 35vmin
@@ -20,8 +24,7 @@ $base-green: #40f589
     animation: App-logo-mover 1s infinite alternate
     -webkit-animation: App-logo-mover 1s infinite alternate
 
-.App-header, .searchUsersBox, .searchUsersResult
-  background-color: #282c34
+.App-header, .searchUsersBox, .searchUsersResult  
   min-height: 50vh
   display: flex
   flex-direction: column
@@ -33,29 +36,29 @@ $base-green: #40f589
 .App-header h1, .searchUsersResult h1
   margin: 0
   margin-bottom: 0
-  text-shadow: 5px 4px 3px #61dafb59
+  text-shadow: 5px 4px 3px $base-blue-shadow
   font-size: 2.8em
-  color: #61dafb
+  color: $base-blue
 
 .searchUsersResult 
-    img 
-        width: 120px
+  img 
+    width: 120px
     
-    input 
-        padding: 8px
-        border-radius: 6px
-        font-size: calc(10px + 1vmin)
+  input 
+    padding: 8px
+    border-radius: 6px
+    font-size: calc(10px + 1vmin)
 
 .searchUsersForm
-    input
-        padding: 8px
-        border-radius: 6px
-        font-size: calc(10px + 1vmin)
+  input
+    padding: 8px
+    border-radius: 6px
+    font-size: calc(10px + 1vmin)
     
-    input:focus-visible
-        outline-color: #40f589
-        outline-style: solid
-        outline-width: 3px
+  input:focus-visible
+    outline-color: $base-green
+    outline-style: solid
+    outline-width: 3px
 
 .loadingRepos
   position: absolute
@@ -67,45 +70,44 @@ $base-green: #40f589
   z-index: 1
 
 .listRepos
-    margin-top: 10px
-    background-color: #000
-    padding: 10px 40px
-    height: 250px
-    overflow-y: auto
-    overflow-x: hidden
-    border-radius: 8px
-    width: 70vw
-    position: relative
+  margin-top: 10px
+  background-color: #000
+  padding: 10px 40px
+  height: 250px
+  overflow-y: auto
+  overflow-x: hidden
+  border-radius: 8px
+  width: 70vw
+  position: relative
 
-    p 
-        color: #40f589
-        font-size: 14px
-        margin: 1px
-        text-align: center
-        font-weight: 500
-        transform: scale(1)
-        -webkit-transition: all .5s
-        -moz-transition: all .5s
-        -o-transition: all .5s
-        transition: all .5s
+  p 
+    color: $base-green
+    font-size: 14px
+    margin: 1px
+    text-align: center
+    font-weight: 500
+    transform: scale(1)
+    -webkit-transition: all .5s
+    -moz-transition: all .5s
+    -o-transition: all .5s
+    transition: all .5s
 
 .listRepos 
-    p
-      a
-        color: #40f589
-        position: absolute
-        width: 100%
-        height: 100%
+  p
+    a      
+      position: absolute
+      width: 100%
+      height: 100%
 
-      u
-        font-size: 14px
+    u
+      font-size: 14px
 
-      &:hover
-        transform: scale(1.12)
+    &:hover
+      transform: scale(1.12)
 
-      span 
-          font-size: 11px
-          font-style: italic
+    span 
+      font-size: 11px
+      font-style: italic
 
 .totalOfRepositories
   opacity: 1
@@ -115,25 +117,26 @@ $base-green: #40f589
   transition: all 0.3s
 
 .blueBtn
-    font-size: calc(10px + 1vmin)
-    padding: 8px
-    border-radius: 8px
-    -webkit-transition: all 0.4s
-    -moz-transition: all 0.4s
-    -o-transition: all 0.4s
-    transition: all 0.4s
-    background-image: linear-gradient(to bottom, #c3f1fd 0%, #3eadcc 51%)    
-    text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.5)
-    color: #21282a
-    box-shadow: 6px 6px 10px #6a6a6a
-    border: 1px
+  cursor: pointer
+  font-size: calc(10px + 1vmin)
+  padding: 8px
+  border-radius: 8px
+  -webkit-transition: all 0.4s
+  -moz-transition: all 0.4s
+  -o-transition: all 0.4s
+  transition: all 0.4s
+  background-image: linear-gradient(to bottom, $light-blue 0%, $dark-blue 51%)    
+  text-shadow: 2px 2px 3px rgba(255, 255, 255, 0.5)
+  color: #21282a
+  box-shadow: 6px 6px 10px #6a6a6a
+  border: 1px
 
-    &:hover
-        background-image: linear-gradient(to bottom, #61dafb 0%, #329fbd 51%)
-        box-shadow: 1px 1px 1px
+  &:hover
+    background-image: linear-gradient(to bottom, $base-blue 0%, $darker-blue 51%)
+    box-shadow: 1px 1px 1px
 
-    &:active
-        background-image: linear-gradient(to bottom, #c3f1fd 0%, #3eadcc 51%)
+  &:active
+    background-image: linear-gradient(to bottom, $base-blue 0%, $dark-blue 51%)
 
 .searchUserButton
   margin-top: 30px
@@ -148,12 +151,12 @@ $base-green: #40f589
 
 @-webkit-keyframes App-logo-mover
   0%
-      transform: translateY(0)
+    transform: translateY(0)
   100%
-      transform: translateY(-10px)
+    transform: translateY(-10px)
 
 @keyframes App-logo-mover
   0%
-      transform: translateY(0)
+    transform: translateY(0)
   100%
-      transform: translateY(-10px)
+    transform: translateY(-10px)
