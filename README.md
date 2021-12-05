@@ -52,8 +52,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Tests
 Two automated Tests were developed, one for each page
-- [x] **Renders search page** : If the string "The search page" is found in the page the test passes.
-- [x] **Loads and displays user page for username "nuno"** : The username is set to "nuno" and a API search user request is triggered,and, after the string "The user page" is displayed, if the user login name "nuno" is found in the page, the test passes.
+- [x] **Renders search page** : If the string "The search page" is found in the page, the test passes.
+- [x] **Loads and displays user page for username "nuno"** : The username is set to "nuno" and a API search user request is triggered, and, after the string "The user page" is displayed, if the user login name "nuno" is found in the page, the test passes.
 
 
 ## Available Scripts
