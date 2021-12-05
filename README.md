@@ -1,4 +1,4 @@
-# React-Github-Api-User-Search
+# React-GitHub-Api-User-Search
 
 This project has 2 pages
 
