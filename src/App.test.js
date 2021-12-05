@@ -1,15 +1,22 @@
 import { render, fireEvent, waitFor, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders search page', () => {
-  render(<App />);
-  const titleElement = screen.getByText(/The search page/i);
-  expect(titleElement).toBeInTheDocument();
+// Added this for testing, since the window object isn't availble for testing
+window.var = {
+  userPage:1,
+  userName:""
+}
+
+// Pass if "The search page" String is found
+test('Renders search page', () => {
+  render(<App />)
+  const titleElement = screen.getByText(/The search page/i)
+  expect(titleElement).toBeInTheDocument()
 });
 
-
-test('loads and displays user page', async () => {
-  render(<App />);
+// Pass if the GitHub api response returns the first user found by username "nuno" with the json login.name property equals to "nuno"
+test('Loads and displays user page for username "nuno"', async () => {
+  render(<App />)
 
   const input = screen.getByTestId('username')
   fireEvent.change(input, {target: {value: 'nuno'}})
@@ -17,7 +24,6 @@ test('loads and displays user page', async () => {
   fireEvent.click(searchButton)
 
   await waitFor(() => screen.getByText(/The user page/i))
-  const titleElement = screen.getByText(/Found/i);
-  expect(titleElement).toBeInTheDocument();
-  //expect(screen.getByText('heading')).toHaveTextContent('The user page')
+  const titleElement = screen.getByText(/nuno/i)
+  expect(titleElement).toBeInTheDocument()
 });
