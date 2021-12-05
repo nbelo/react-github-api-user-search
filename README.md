@@ -32,7 +32,7 @@ To manage this additional requests and load diferent user data, a per_page varia
 ### User repositories request
 When the user data is displayed, at it's change, another api request is triggered to get the user repositories.
 
-## Code relevant decisions
+### Techs
     
 📌 ![JavaScript](https://img.shields.io/badge/-JavaScript-F7B93E?style=flat-square&logo=javascript&logoColor=fff)
 **Global variables**:
@@ -40,14 +40,20 @@ When the user data is displayed, at it's change, another api request is triggere
 - userName to persist the name of the typed username in the first page.
 
 📌 ![HTML5](https://img.shields.io/badge/-HTML5-E34F26?style=flat-square&logo=html5&logoColor=white) 
-- The visible page (html) is controlled by the number in the **users.total_count** in the JSX code returned. 
+- The visible page (html) is controlled by the number in the **users.total_count** in the JSX code returned by the main App.
 - If we don't have any users loaded, the first page is displayed, otherwise, the user page is displayed.
 
 📌  ![CSS3](https://img.shields.io/badge/-CSS3-549FDE?style=flat-square&logo=css3&logoColor=white)
-- Writing CSS is much more simple if we use SASS, so I've decided to use this prepocessor to help in this task.
+- Writing CSS is much more simple and organized if we use SASS, so I've decided to use this prepocessor to help in this task.
 
 --
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+
+### Tests
+Two automated Tests were developed, one for each page
+- [x] **Renders search page** : If the string "The search page" is found in the page the test passes.
+- [x] **Loads and displays user page for username "nuno"** : The username is set to "nuno" and a api search user request is triggered,and, after the string "The user page" is displayed, if the user login name "nuno" is found in the page, the test passes.
 
 
 ## Available Scripts
@@ -64,10 +70,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\
-
-Two automated Tests were developed, one for each page
-- [x] **Renders search page** : If the string "The search page" is found in the page the test passes.
-- [x] **Loads and displays user page for username "nuno"** : The username is set to "nuno" and a api search user request is triggered,and, after the string "The user page" is displayed, if the user login name "nuno" is found in the page, the test passes.
 
 
 ### `serve -s build`
