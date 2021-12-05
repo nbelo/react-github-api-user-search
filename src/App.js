@@ -8,7 +8,7 @@ const App = () => {
   const [users, setUsers] = useState([])
   const [repositories, setUserRepositories] = useState([])
 
-  const LoadUsers = () => {    
+  const LoadUsers = () => {
     if (document.getElementById("username") != null) {
       window.var.userName = document.getElementById("username").value
       if (window.var.userName.length === 0) {
@@ -98,8 +98,7 @@ const App = () => {
         </div>
       </div>
     )
-  } 
-  else {
+  } else {
     return (
       <div className="App">
         <div className="searchUsersResult">
@@ -107,7 +106,7 @@ const App = () => {
             <h1>The user page</h1>
             <p className="error">{error}</p>
             <h2>Found {users.total_count} {users.total_count > 1 ? "users" : "user"}</h2>
-            <button className="blueBtn" onClick={ResetUsers}><span>&#x2039;</span> Back</button>&nbsp;            
+            <button className="blueBtn" onClick={ResetUsers}><span>&#x2039;</span> Back</button>&nbsp;&nbsp;          
             <button className="blueBtn" onClick={NextUser}>Next user <span>&#x203A;</span></button>
             <h3>Showing user #{users.items.indexOf(user, 0) + 1 + ((window.var.userPage-1)*30)}</h3>
           </header>

@@ -1,70 +1,71 @@
-# Getting Started with Create React App
 
+# React-Github-Api-User-Search
+
+This project has 2 pages
+    1. The Search Page
+        A very simple page with one input for the username that will be used in the request to the github API
+        The request will be triggered by clicking the "Search GitHub Users" button
+
+    2. The User Page
+        If the Search for GitHub users returned any items (users) you will see this page
+        Here we can find the:
+            - Total count of users found with the typed username in the Search page 
+            - "< Back" button to go back to the Search page
+            - "Next User >" button to display the next user data (and make another api request to show the respective user repositories)
+            - The info about the user number from the total of users that were found (this is limited to 1000 by the api)
+            - The user avatar image and username (login name)
+            - Total of repositories found for the current displayed user (limited to 100 by the api)
+            - A list of all the user repositories, displaying the repository name and description
+
+    **NOTE**: A personal github token with very limited access is included in the code to improve the success of the api requests because during the development some api errors were found, and with the usage of a token, those request became more fluid.
+    This token will expire on Sat, Dec 25 2021.
+
+## Development
+    This is my first react project, so it's most likely that the react way of organizing code isn't the best.
+
+### User search request
+    The main goal was to display one user info, but the api response usuallly show thousands, or hundreds, of users with a simple request, so I've decided to allow the user to load more than one user data.
+    For each user request we get 30 users, so this data is used to fullfill an array of users that we can display whitout more requests. After we reach the 30th user, another api user search request will be made, and another 30 users are loaded.
+    To manage this additional requests and load diferent user data, I've added a per_page variable that is increased at every 30 users that are requested.
+
+### User repositories request
+    When the user data is displayed, at it's change, another api request is triggered to get the user repositories.
+
+### Code relevant decisions
+    
+    JS: **Global variables**
+        - userPage with a value that persist between api requests and is only incremented after every 30th users are loaded.
+        - userName to persist the name of the typed username in the first page.
+
+    Html: The visible page (html) is controlled by the number in the **users.total_count** in the JSX code returned. 
+          If we don't have any users loaded, the first page is displayed, otherwise, the user page is displayed.
+
+    CSS: Writing CSS gets more simple if we use SASS, so I've decided to use this prepocessor that help in this task.
+
+--
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
 
 ## Available Scripts
 
 In the project directory, you can run:
+
 
 ### `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+Two automated Tests were developed, one for each page
+    - ** Renders search page ** : If the string "The search page" is found in the page the test passes.
+    - ** Loads and displays user page for username "nuno" ** : The username is set to "nuno" and a api search user request is triggered,and, after the string "The user page" is displayed, if the user login name "nuno" is found in the page, the test passes.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### `serve -s build`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Serve the builded application 
