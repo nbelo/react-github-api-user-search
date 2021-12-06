@@ -17,8 +17,7 @@ Here we can find:
 - Total of repositories found for the current displayed user (limited to 100 by the API).
 - A list of all the user repositories, displaying the repository name and description.
 
-**NOTE**: A personal GitHub token with very limited access is included in the code to improve the success of the API calls because during the development some calls returned API errors, and with the usage of a token, those requests became successful.
-***This token will expire on Sat, Dec 25 2021.***
+**NOTE**: A personal GitHub token with very limited access is included, but When this repository became public that Token was revoked by GitHub due to security reasons, so if you want for the API calls to work properly, please get a GitHub Token and replace the one that can be found inside the App.js file.
 
 
 ## Development
